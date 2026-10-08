@@ -1,7 +1,10 @@
 FROM python:3.14-slim@sha256:f85c5697265c178cc6887276c55fe16cf3d14ca35c3df6a5eab3b360534a55d2
 WORKDIR /app
 ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 APP_ENV=production
-RUN apt-get update && apt-get install -y --no-install-recommends libgomp1 \
+# Apply available OS security updates even when the base image is digest-pinned.
+RUN apt-get update \
+    && apt-get upgrade -y --no-install-recommends \
+    && apt-get install -y --no-install-recommends libgomp1 \
     && rm -rf /var/lib/apt/lists/* \
     && groupadd --system app && useradd --system --gid app --home-dir /app app
 COPY requirements.txt requirements.lock ./
