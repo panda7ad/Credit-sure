@@ -49,5 +49,6 @@ jobs:
         with:
           image: creditsure:ci
           fail-build: true
-          severity-cutoff: medium
+          severity-cutoff: low
+          only-fixed: true
           output-format: table
