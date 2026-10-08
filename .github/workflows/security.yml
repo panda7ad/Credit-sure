@@ -30,7 +30,7 @@ jobs:
           node scripts/test_database.mjs
           node --check web/site.js
           node --check web/workspace.js
-      - name: Browser behavior tests with synthetic accounts
+      - name: Browser behavior tests for the public calculator
         run: |
           npx playwright install --with-deps chromium
           npx playwright test

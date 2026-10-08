@@ -1,5 +1,4 @@
 """Check deployment assets, script integrity, and accidental tracked secrets."""
-import base64
 import hashlib
 import json
 import re
@@ -10,8 +9,6 @@ ROOT = Path(__file__).resolve().parents[1]
 manifest = json.loads((ROOT / "models/manifest.json").read_text())
 for name in ("credit_model.joblib", "metadata.json"):
     assert hashlib.sha256((ROOT / "models" / name).read_bytes()).hexdigest() == manifest[name], f"Model manifest mismatch: {name}"
-sdk = ROOT / "web/vendor/supabase.js"
-integrity = "sha384-" + base64.b64encode(hashlib.sha384(sdk.read_bytes()).digest()).decode()
 for page in (ROOT / "web").glob("*.html"):
     text = page.read_text(encoding="utf-8")
     assert "cdn.jsdelivr.net" not in text, "Unvendored browser dependency"
