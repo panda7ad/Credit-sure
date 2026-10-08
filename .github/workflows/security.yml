@@ -45,7 +45,7 @@ jobs:
           docker build -t creditsure:ci .
           docker run --rm -e ALLOWED_HOSTS=localhost creditsure:ci python -c "from app.main import model; from app.schemas import Applicant; assert model.model is not None; result=model.predict(Applicant(applicant_name='Synthetic',age_years=30,annual_income=600000,loan_amount=250000,annuity_amount=15000).model_dump()); assert 300<=result['credit_score']<=900"
       - name: Scan final image OS and Python packages
-        uses: anchore/scan-action@1638637db639e0ade3258b51db49a9a137574c3e
+        uses: anchore/scan-action@27805bf3b4e84b4a5c980df22ed233c00390a439
         env:
           GRYPE_CONFIG: ${{ github.workspace }}/.grype.yaml
         with:
@@ -55,7 +55,7 @@ jobs:
           only-fixed: true
           output-format: table
       - name: Report remaining findings including unfixed OS issues
-        uses: anchore/scan-action@1638637db639e0ade3258b51db49a9a137574c3e
+        uses: anchore/scan-action@27805bf3b4e84b4a5c980df22ed233c00390a439
         env:
           GRYPE_CONFIG: ${{ github.workspace }}/.grype.yaml
         with:
