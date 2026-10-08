@@ -29,7 +29,6 @@ jobs:
           python -m unittest discover -s tests -v
           node scripts/test_database.mjs
           node --check web/site.js
-          node --check web/auth.js
           node --check web/workspace.js
       - name: Browser behavior tests with synthetic accounts
         run: |

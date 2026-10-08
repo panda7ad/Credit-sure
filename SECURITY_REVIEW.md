@@ -1,3 +1,20 @@
+## Current public calculator ? 9 October 2026
+
+The account-based flow below is historical. The current website has no signup,
+login or saved history. Account/history endpoints are retired; new predictions
+never call Supabase or persist assessment records. Supabase/SMTP/CAPTCHA are not
+launch dependencies. Existing Supabase data is left untouched and still requires
+operator-managed retention/access/deletion handling.
+
+Public predictions retain strict input validation, body limits, two inference
+slots, shared Redis network and global request budgets, no-store responses,
+security headers and pinned model integrity. Production readiness requires Redis,
+a 32-character minimum random salt and reviewed launch settings. Browser results
+are not stored and disappear on refresh. All 23 Python checks, 6 browser checks
+and 8 legacy SQL-isolation checks pass locally. The previously verified CPython
+backports remain unchanged. Review the unfiltered OS findings separately; a green
+only-fixed scan is not proof that all OS vulnerabilities are resolved.
+
 # Credit-Sure pre-launch security review
 
 ## Remediation update, 8 October 2026

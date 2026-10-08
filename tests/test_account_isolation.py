@@ -65,38 +65,8 @@ class AccountIsolationTests(unittest.TestCase):
         self.assertEqual(query["id"], ["eq.record-one"])
         self.assertEqual(request.call_args.kwargs["method"], "DELETE")
 
-    def test_api_requires_authentication_before_reading_history(self):
-        with TestClient(main.app) as client:
-            response = client.get("/api/history")
-        self.assertEqual(response.status_code, 401)
 
-    def test_history_api_uses_verified_account_and_local_date(self):
-        main.app.dependency_overrides[main.authenticated_user] = lambda: {
-            "id": "account-one",
-            "access_token": "access-token",
-        }
-        try:
-            with patch.object(main, "get_history", return_value=[]) as history:
-                with TestClient(main.app) as client:
-                    response = client.get("/api/history?assessed_on=2026-10-08")
-            self.assertEqual(response.status_code, 200)
-            history.assert_called_once_with(
-                "account-one", "access-token", "2026-10-08", 50
-            )
-        finally:
-            main.app.dependency_overrides.clear()
 
-    def test_supabase_project_key_is_not_required_or_exposed_when_unconfigured(self):
-        with patch.dict(
-            "os.environ",
-            {"SUPABASE_URL": "", "SUPABASE_ANON_KEY": ""},
-            clear=False,
-        ):
-            with TestClient(main.app) as client:
-                response = client.get("/api/config")
-        self.assertEqual(response.status_code, 200)
-        self.assertFalse(response.json()["configured"])
-        self.assertNotIn("service_role", json.dumps(response.json()).lower())
 
 
 if __name__ == "__main__":
