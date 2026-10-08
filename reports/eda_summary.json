@@ -1,0 +1,32 @@
+{
+  "rows": 307511,
+  "columns": 24,
+  "default_rate": 0.08072881945686496,
+  "duplicates": 0,
+  "missing_pct": {
+    "credit_card_utilization": 72.02181385381336,
+    "avg_monthly_balance": 71.73922233676193,
+    "digital_payment_ratio": 71.73922233676193,
+    "prior_loans": 5.350702901684818,
+    "prior_defaults": 5.350702901684818,
+    "avg_days_late": 5.162742145809418,
+    "monthly_txn_count": 5.160140612856125,
+    "on_time_payment_ratio": 5.160140612856125,
+    "external_score": 0.05593295849579365,
+    "savings_ratio": 0.003902299429939092,
+    "annuity_amount": 0.003902299429939092,
+    "family_size": 0.0006503832383231819,
+    "phone_changed_years": 0.00032519161916159093,
+    "SK_ID_CURR": 0.0,
+    "TARGET": 0.0,
+    "annual_income": 0.0,
+    "employment_years": 0.0,
+    "loan_amount": 0.0,
+    "age_years": 0.0,
+    "income_stability": 0.0,
+    "children": 0.0,
+    "education": 0.0,
+    "income_type": 0.0,
+    "housing_type": 0.0
+  }
+}

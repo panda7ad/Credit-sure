@@ -1,0 +1,14 @@
+-c requirements.lock
+fastapi==0.143.0
+starlette==1.7.0
+python-dotenv==1.2.4
+uvicorn==0.54.0
+pydantic==2.13.5
+httpx==0.28.1
+redis==8.1.0
+# These match the environment in which the current trusted model loads.
+pandas==3.0.1
+numpy==2.4.2
+scikit-learn==1.8.0
+joblib==1.5.3
+xgboost-cpu==3.4.1

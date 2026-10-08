@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Your private Credit-Sure research workspace.">
+  <meta name="theme-color" content="#f6f5f0">
+  <title>Your workspace — Credit-Sure</title>
+  <link rel="icon" href="/static/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/static/style.css">
+  <script src="/static/vendor/supabase.js" integrity="sha384-BWcjm9OdFth9TbhCxZPdm+gAOUMAzQy9nmTs12ioXdCcbVnJaPMn+fMUoQCLt60R" defer></script><script src="/static/site.js" defer></script><script src="/static/workspace.js" defer></script>
+</head>
+<body class="workspace-page">
+  <header class="site-header">
+    <a class="brand" href="/"><span class="brand-mark">C</span><span>credit-sure</span></a>
+    <div class="account-bar"><span id="account-email" hidden></span><button class="text-link" id="sign-out" type="button" hidden>Sign out</button></div>
+  </header>
+  <main class="wrap workspace-main">
+    <div class="page-heading"><div><p class="eyebrow">RESEARCH WORKSPACE</p><h1>Assessment</h1></div><span class="account-private">Private to your account</span></div>
+    <div class="workspace-alert" id="workspace-alert" role="status" hidden></div>
+    <p class="prototype-notice"><strong>Research prototype.</strong> Use synthetic data only. Do not enter real applicant financial information or use this estimate for real lending decisions.</p>
+    <section id="policy-panel" class="prototype-notice" hidden><form id="policy-form"><label class="consent-check"><input type="checkbox" required><span>I am at least 18, agree to the <a href="/terms">Terms</a>, have read the <a href="/privacy">Privacy notice</a>, and will use synthetic research data only.</span></label><button id="policy-submit" class="button" type="submit">Accept and continue</button></form></section>
+    <div class="workspace-layout" id="workspace-content" hidden>
+      <section class="application-panel">
+        <form id="assessment-form">
+          <div class="form-heading"><div><span class="section-kicker">01</span><div><h2>Application details</h2><p>Start with what you know. Core details are required.</p></div></div></div>
+          <div class="input-grid">
+            <div class="input-wrap"><label for="applicant_name">Synthetic record name <span>Required</span></label><input id="applicant_name" name="applicant_name" type="text" maxlength="120" autocomplete="off" required placeholder="e.g. Synthetic applicant 01"></div>
+            <div class="input-wrap"><label for="age_years">Age <span>Years</span></label><input id="age_years" name="age_years" type="number" min="18" max="100" step="1" required placeholder="e.g. 32"></div>
+            <div class="input-wrap"><label for="annual_income">Annual income <span>₹</span></label><input id="annual_income" name="annual_income" type="number" min="1" step="any" required placeholder="e.g. 600000"></div>
+            <div class="input-wrap"><label for="loan_amount">Requested loan <span>₹</span></label><input id="loan_amount" name="loan_amount" type="number" min="1" step="any" required placeholder="e.g. 250000"></div>
+            <div class="input-wrap"><label for="annuity_amount">Monthly instalment <span>₹ / month</span></label><input id="annuity_amount" name="annuity_amount" type="number" min="1" step="any" required placeholder="e.g. 15000"></div>
+          </div>
+          <details class="additional-inputs">
+            <summary><span><strong>Additional information</strong><small>Optional · add details only when known</small></span><span class="disclosure-mark" aria-hidden="true">+</span></summary>
+            <p class="details-note">Additional signals can add context. Unknown fields are imputed from training data, so results with missing details may be less informative.</p>
+            <div class="input-grid">
+              <div class="input-wrap"><label for="employment_years">Time in employment <span>Years</span></label><input id="employment_years" name="employment_years" type="number" min="0" max="70" step="any" placeholder="Leave blank if unknown"></div>
+              <div class="input-wrap"><label for="family_size">Household size <span>People</span></label><input id="family_size" name="family_size" type="number" min="1" max="30" step="1" placeholder="Leave blank if unknown"></div>
+              <div class="input-wrap"><label for="children">Children <span>Count</span></label><input id="children" name="children" type="number" min="0" max="20" step="1" placeholder="Leave blank if unknown"></div>
+              <div class="input-wrap"><label for="education">Education</label><select id="education" name="education"><option value="">Not provided</option><option>Higher education</option><option>Secondary / secondary special</option><option>Incomplete higher</option><option>Lower secondary</option></select></div>
+              <div class="input-wrap"><label for="income_type">Income source</label><select id="income_type" name="income_type"><option value="">Not provided</option><option>Working</option><option>Commercial associate</option><option>Pensioner</option><option>State servant</option></select></div>
+              <div class="input-wrap"><label for="housing_type">Housing</label><select id="housing_type" name="housing_type"><option value="">Not provided</option><option>House / apartment</option><option>With parents</option><option>Rented apartment</option><option>Municipal apartment</option></select></div>
+              <div class="input-wrap"><label for="phone_changed_years">Time since phone number changed <span>Years</span></label><input id="phone_changed_years" name="phone_changed_years" type="number" min="0" max="50" step="any" placeholder="Leave blank if unknown"></div>
+              <div class="input-wrap"><label for="external_score">Existing bureau score <span>0–1 scale</span></label><input id="external_score" name="external_score" type="number" min="0" max="1" step="any" placeholder="Leave blank if unavailable"></div>
+              <div class="input-wrap"><label for="prior_loans">Previous credit accounts <span>Count</span></label><input id="prior_loans" name="prior_loans" type="number" min="0" step="1" placeholder="Leave blank if unknown"></div>
+              <div class="input-wrap"><label for="prior_defaults">Previous adverse cases <span>Count</span></label><input id="prior_defaults" name="prior_defaults" type="number" min="0" step="1" placeholder="Leave blank if unknown"></div>
+              <div class="input-wrap"><label for="on_time_payment_ratio">Payments made on time <span>0–1 (e.g. 0.9)</span></label><input id="on_time_payment_ratio" name="on_time_payment_ratio" type="number" min="0" max="1" step="any" placeholder="Leave blank if unknown"></div>
+              <div class="input-wrap"><label for="avg_days_late">Average days late <span>Days</span></label><input id="avg_days_late" name="avg_days_late" type="number" min="0" step="any" placeholder="Leave blank if unknown"></div>
+              <div class="input-wrap"><label for="credit_card_utilization">Credit utilisation <span>0–1 (e.g. 0.4)</span></label><input id="credit_card_utilization" name="credit_card_utilization" type="number" min="0" max="5" step="any" placeholder="Leave blank if unknown"></div>
+              <div class="input-wrap"><label for="monthly_txn_count">Monthly transaction count</label><input id="monthly_txn_count" name="monthly_txn_count" type="number" min="0" step="any" placeholder="Leave blank if unknown"></div>
+              <div class="input-wrap"><label for="avg_monthly_balance">Average account balance <span>₹ / month</span></label><input id="avg_monthly_balance" name="avg_monthly_balance" type="number" min="0" step="any" placeholder="Leave blank if unknown"></div>
+              <div class="input-wrap"><label for="income_stability">Income consistency <span>0–1 (e.g. 0.8)</span></label><input id="income_stability" name="income_stability" type="number" min="0" max="1" step="any" placeholder="Leave blank if unknown"></div>
+              <div class="input-wrap"><label for="digital_payment_ratio">Digital payment share <span>0–1 (e.g. 0.7)</span></label><input id="digital_payment_ratio" name="digital_payment_ratio" type="number" min="0" max="1" step="any" placeholder="Leave blank if unknown"></div>
+              <div class="input-wrap"><label for="savings_ratio">Savings share <span>0–1 (e.g. 0.2)</span></label><input id="savings_ratio" name="savings_ratio" type="number" min="0" max="1" step="any" placeholder="Leave blank if unknown"></div>
+            </div>
+          </details>
+          <label class="consent-check"><input type="checkbox" id="research-confirm" required><span>I confirm these are synthetic details. I will not use the result for a real lending decision.</span></label>
+          <button class="button" id="assess-button" type="submit">Generate research estimate <span aria-hidden="true">→</span></button>
+        </form>
+      </section>
+      <aside class="result-column">
+        <section class="result-panel" aria-live="polite">
+          <p class="eyebrow">ESTIMATE</p><div class="fine-rule"></div>
+          <div id="result-empty"><span class="result-kicker">Ready when you are</span><h2>A starting point<br>for review.</h2><p>Complete the application details to see the experimental model estimate.</p></div>
+          <div id="result-output" hidden>
+            <span class="result-kicker" id="result-name"></span><h2 class="result-decision" id="result-decision"></h2>
+            <div class="result-numbers"><div><span>Model score</span><strong id="result-score"></strong><small>Research scale: 300–900</small></div><div><span>Default estimate</span><strong id="result-probability"></strong><small>Not a forecast guarantee</small></div></div>
+            <p class="result-band">Risk category <strong id="result-band"></strong></p>
+            <h3>Signals in this estimate</h3><ul id="result-factors"></ul>
+          </div>
+        </section>
+        <p class="result-caution">This estimate is experimental and must not be used to make real credit or eligibility decisions.</p>
+      </aside>
+    </div>
+    <section class="prototype-notice" id="account-controls" hidden><h2>Account settings</h2><p>Export a copy of your saved data or permanently delete your account. Before deletion, <a href="/signin?reauth=1">sign in again</a> within five minutes.</p><button class="button" id="export-account" type="button">Export my data</button> <button class="button" id="delete-account" type="button">Delete my account</button></section>
+    <section class="history-section" id="history" hidden>
+      <div class="history-heading"><div><p class="eyebrow">YOUR ACCOUNT</p><h2>Saved assessments</h2><p>Only assessments saved by your signed-in account appear here.</p></div><label class="date-filter">Filter by date<input id="history-date" type="date"></label></div>
+      <div class="table-scroll"><table><thead><tr><th>Applicant</th><th>Date</th><th>Score</th><th>Research band</th><th></th></tr></thead><tbody id="history-rows"><tr><td colspan="5" class="empty-row">Loading your assessments…</td></tr></tbody></table></div>
+    </section>
+    <footer class="workspace-footer"><span>Credit-Sure · Research prototype</span><div><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="mailto:youngseldon77@gmail.com">Contact</a></div></footer>
+  </main>
+</body>
+</html>

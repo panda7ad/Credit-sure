@@ -1,0 +1,111 @@
+{
+  "best_model": "xgboost",
+  "threshold": 0.1,
+  "feature_contract": [
+    "age_years",
+    "annual_income",
+    "loan_amount",
+    "annuity_amount",
+    "employment_years",
+    "family_size",
+    "children",
+    "education",
+    "income_type",
+    "housing_type",
+    "phone_changed_years",
+    "external_score",
+    "prior_loans",
+    "prior_defaults",
+    "on_time_payment_ratio",
+    "avg_days_late",
+    "credit_card_utilization",
+    "monthly_txn_count",
+    "avg_monthly_balance",
+    "income_stability",
+    "digital_payment_ratio",
+    "savings_ratio"
+  ],
+  "results": {
+    "logistic_regression": {
+      "roc_auc": 0.7445785538209968,
+      "pr_auc": 0.22378484164451368,
+      "accuracy": 0.707705315187877,
+      "precision": 0.1664957965962682,
+      "recall": 0.6541792547834844,
+      "f1": 0.26543537776324927,
+      "confusion_matrix": [
+        [
+          40278,
+          16260
+        ],
+        [
+          1717,
+          3248
+        ]
+      ],
+      "threshold": 0.5099999999999998,
+      "train_seconds": 3.39
+    },
+    "random_forest": {
+      "roc_auc": 0.7429433071722796,
+      "pr_auc": 0.21894227634351207,
+      "accuracy": 0.6758532104125002,
+      "precision": 0.15604466296006983,
+      "recall": 0.683987915407855,
+      "f1": 0.2541155342711763,
+      "confusion_matrix": [
+        [
+          38171,
+          18367
+        ],
+        [
+          1569,
+          3396
+        ]
+      ],
+      "threshold": 0.3899999999999999,
+      "train_seconds": 36.77
+    },
+    "lightgbm": {
+      "roc_auc": 0.7544172894865565,
+      "pr_auc": 0.23799841779100023,
+      "accuracy": 0.683251223517552,
+      "precision": 0.16188390943818132,
+      "recall": 0.6998992950654582,
+      "f1": 0.2629488101093413,
+      "confusion_matrix": [
+        [
+          38547,
+          17991
+        ],
+        [
+          1490,
+          3475
+        ]
+      ],
+      "threshold": 0.46999999999999986,
+      "train_seconds": 10.14
+    },
+    "xgboost": {
+      "roc_auc": 0.755765655851885,
+      "pr_auc": 0.23843879298287285,
+      "accuracy": 0.7602068191795522,
+      "precision": 0.19097858361235706,
+      "recall": 0.6088620342396778,
+      "f1": 0.29075694911993843,
+      "confusion_matrix": [
+        [
+          43732,
+          12806
+        ],
+        [
+          1942,
+          3023
+        ]
+      ],
+      "threshold": 0.1,
+      "train_seconds": 7.7
+    }
+  },
+  "note": "15% NPA reduction is a business target; validate prospectively against lender portfolio outcomes."
+}
