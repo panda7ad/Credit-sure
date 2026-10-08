@@ -54,3 +54,12 @@ jobs:
           severity-cutoff: low
           only-fixed: true
           output-format: table
+      - name: Report remaining findings including unfixed OS issues
+        uses: anchore/scan-action@1638637db639e0ade3258b51db49a9a137574c3e
+        env:
+          GRYPE_CONFIG: ${{ github.workspace }}/.grype.yaml
+        with:
+          image: creditsure:ci
+          fail-build: false
+          only-fixed: false
+          output-format: table

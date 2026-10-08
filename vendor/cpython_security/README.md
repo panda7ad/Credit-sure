@@ -29,5 +29,8 @@ Remove the backports and associated rules once an official compatible release fi
 all three findings. Re-review before any runtime digest change. Do not switch to
 Python 3.15 until stable images and the required scientific dependency wheels exist.
 
-Validation: local hash, POP3 and tar regressions pass. Linux container validation and
-full application CI are required before merging; see the GitHub Actions run.
+Validation: all four regressions pass in the non-root Linux image. Application tests
+(25), browser tests, dependency audits, model prediction smoke test and the blocking
+container scan pass: https://github.com/panda7ad/Credit-sure/actions/runs/37820721876
+The workflow also reports remaining findings without only-fixed filtering, separately
+from the existing blocking gate, to keep unfixed OS issues visible.
