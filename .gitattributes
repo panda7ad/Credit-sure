@@ -1,0 +1,3 @@
+models/*.joblib -text
+models/metadata.json text eol=lf
+models/manifest.json text eol=lf

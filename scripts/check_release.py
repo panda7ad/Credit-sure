@@ -9,7 +9,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 manifest = json.loads((ROOT / "models/manifest.json").read_text())
 for name in ("credit_model.joblib", "metadata.json"):
-    assert hashlib.sha256((ROOT / "models" / name).read_bytes()).hexdigest() == manifest[name], "Model manifest mismatch"
+    assert hashlib.sha256((ROOT / "models" / name).read_bytes()).hexdigest() == manifest[name], f"Model manifest mismatch: {name}"
 sdk = ROOT / "web/vendor/supabase.js"
 integrity = "sha384-" + base64.b64encode(hashlib.sha384(sdk.read_bytes()).digest()).decode()
 for page in (ROOT / "web").glob("*.html"):
