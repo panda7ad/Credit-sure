@@ -3,19 +3,19 @@
   "modules": {
     "poplib.py": {
       "original": "527e714523264093910a0a0b1a55c6583f952835c89061537fc40ad98c347056",
-      "patched": "5b7191306c8a951486ddae2c365e110194c71ab1ce5d419d35c07a96d7b5ecef"
+      "patched": "a6ffff188814b56d95b043c31d9e0dfee51ac6d6e92afe74ab070cb6136b076f"
     },
     "tarfile.py": {
       "original": "825de0990d0bedf6ed8db97b4a0fc98f25617a692c3d38c0bbba800beb9952fb",
-      "patched": "f8497ed1ee28fd6ac67e8c4c2981447ae056e5ecbbb35514711bef422ce26593"
+      "patched": "82ac045a2d97396a295405268a5f14393620b0ebf50e9305e56f34731e1d89ea"
     },
     "tempfile.py": {
       "original": "3714372b63f6bc05a5273425d446f6ad3a2112a659c71c321bb4575fd082d634",
-      "patched": "45b5d36dc54fdaa0b5c43e7579fa4cdcf88b82f7ee383dbe5af99211a9f20a4b"
+      "patched": "5e2a8c5539e2aa3f4d39a364c701711ba54eeca88c17e95d31ebb83ea84de27d"
     },
     "shutil.py": {
       "original": "28a5df6415bf1a7ab36cbd544d6d35ae0f056a198e3872a786dc4e156d5fcd7d",
-      "patched": "a3817b56b8832b1f73d5015af3ab2d85b4396f5f80c12cb69bf21561a205a5b4"
+      "patched": "b6e01921d7f8a6dcac774c07d1d7f858b2d536ee9535ae576120503fcc559261"
     }
   }
 }
