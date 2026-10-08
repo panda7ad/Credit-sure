@@ -8,7 +8,7 @@
   <title>Credit-Sure — Credit, considered.</title>
   <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/static/style.css">
-  <script src="/static/vendor/supabase.js" integrity="sha384-BWcjm9OdFth9TbhCxZPdm+gAOUMAzQy9nmTs12ioXdCcbVnJaPMn+fMUoQCLt60R" defer></script>
+
   <script src="/static/site.js" defer></script>
 </head>
 <body>
@@ -19,11 +19,7 @@
       <a href="/#about">About</a>
       <a href="mailto:youngseldon77@gmail.com">Contact</a>
     </nav>
-    <div class="header-actions">
-      <a class="text-link" href="/signin" data-signed-out>Sign in</a>
-      <a class="button button-small" href="/signup" data-signed-out>Create account</a>
-      <a class="button button-small" href="/workspace" data-signed-in hidden>Open workspace</a>
-    </div>
+    <div class="header-actions"><a class="button button-small" href="/workspace">Try the calculator</a></div>
   </header>
 
   <main>
@@ -33,7 +29,7 @@
         <h1>Credit,<br><em>considered.</em></h1>
         <p class="lead">A clearer way to explore affordability and repayment behaviour when a traditional credit file tells only part of the story.</p>
         <div class="hero-actions">
-          <a class="button" href="/signup">Create your workspace <span aria-hidden="true">→</span></a>
+          <a class="button" href="/workspace">Try the calculator <span aria-hidden="true">→</span></a>
           <a class="text-link" href="/how-it-works">Learn how it works</a>
         </div>
         <p class="quiet-note">An independent research prototype. Not a lender or credit bureau.</p>
@@ -54,7 +50,7 @@
         </div>
         <div class="principles-copy">
           <p>Credit-Sure is a small research workspace for examining alternative signals that may help describe a borrower’s financial circumstances.</p>
-          <p>It keeps each account’s saved assessments private to that signed-in account. The current model is experimental: its estimates are not verified lending advice, a loan offer, or a decision about eligibility.</p>
+          <p>No signup is required. Inputs are processed for the current estimate and are not saved as assessment records. The current model is experimental: its estimates are not verified lending advice, a loan offer, or a decision about eligibility.</p>
           <a class="underlined-link" href="/how-it-works">Read about the research approach <span aria-hidden="true">→</span></a>
         </div>
       </div>
@@ -68,14 +64,14 @@
       <div class="step-grid">
         <article class="step-card"><span>01</span><h3>Bring the context</h3><p>Enter a few core details. Add repayment information only when it is available.</p></article>
         <article class="step-card"><span>02</span><h3>Review the estimate</h3><p>See an experimental model estimate with the information and limitations kept in view.</p></article>
-        <article class="step-card"><span>03</span><h3>Keep your records</h3><p>Your saved assessments are tied to your account, not shown in a shared customer list.</p></article>
+        <article class="step-card"><span>03</span><h3>Explore another scenario</h3><p>Change the synthetic details and compare estimates. There is no saved assessment history.</p></article>
       </div>
     </section>
 
     <section class="closing-band">
       <div class="wrap closing-inner">
         <div><p class="eyebrow">A BETTER STARTING POINT</p><h2>Make room for<br>the whole story.</h2></div>
-        <a class="button button-light" href="/signup">Create an account <span aria-hidden="true">→</span></a>
+        <a class="button button-light" href="/workspace">Try the calculator <span aria-hidden="true">→</span></a>
       </div>
     </section>
   </main>

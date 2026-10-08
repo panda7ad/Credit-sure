@@ -1,15 +1,12 @@
 {
-  "name": "credit-sure-browser-dependencies",
+  "name": "credit-sure-browser-tests",
   "private": true,
   "version": "2.0.0",
-  "dependencies": {
-    "@supabase/supabase-js": "2.117.3"
-  },
   "scripts": {
-    "audit": "npm audit --omit=dev"
+    "test": "playwright test",
+    "audit": "npm audit"
   },
   "devDependencies": {
-    "@electric-sql/pglite": "0.5.8",
     "@playwright/test": "1.64.0"
   }
 }

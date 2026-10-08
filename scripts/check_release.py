@@ -10,17 +10,15 @@ ROOT = Path(__file__).resolve().parents[1]
 manifest = json.loads((ROOT / "models/manifest.json").read_text())
 for name in ("credit_model.joblib", "metadata.json"):
     assert hashlib.sha256((ROOT / "models" / name).read_bytes()).hexdigest() == manifest[name], f"Model manifest mismatch: {name}"
-sdk = ROOT / "web/vendor/supabase.js"
-integrity = "sha384-" + base64.b64encode(hashlib.sha384(sdk.read_bytes()).digest()).decode()
 for page in (ROOT / "web").glob("*.html"):
     text = page.read_text(encoding="utf-8")
     assert "cdn.jsdelivr.net" not in text, "Unvendored browser dependency"
-    assert f'integrity="{integrity}"' in text, "Browser script integrity mismatch"
+    assert "supabase.js" not in text, "Retired account SDK is loaded"
     assert not re.search(r'\son(?:click|load|submit|error)\s*=', text), "Inline script conflicts with CSP"
 try:
     tracked = subprocess.check_output(["git", "ls-files", "-z"], cwd=ROOT, stderr=subprocess.DEVNULL).decode().split("\0")
 except (subprocess.CalledProcessError, FileNotFoundError):
-    tracked = [str(p.relative_to(ROOT)) for folder in ("app", "web", "scripts", "supabase") for p in (ROOT/folder).rglob("*") if p.is_file()]
+    tracked = [str(p.relative_to(ROOT)) for folder in ("app", "web", "scripts") for p in (ROOT/folder).rglob("*") if p.is_file()]
 for name in tracked:
     if not name:
         continue
@@ -37,4 +35,4 @@ for name in tracked:
         except (ValueError, TypeError):
             continue
         assert not isinstance(claims, dict) or claims.get("role") != "service_role", f"Possible service-role key in {name}"
-print("PASS model hashes, SDK integrity, CSP-compatible HTML and tracked-secret checks")
+print("PASS model hashes, retired account SDK, CSP-compatible HTML and tracked-secret checks")

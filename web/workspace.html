@@ -2,23 +2,23 @@
 <html lang="en">
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Your private Credit-Sure research workspace.">
+  <meta name="description" content="Public research calculator. No signup or saved assessment history.">
   <meta name="theme-color" content="#f6f5f0">
   <title>Your workspace — Credit-Sure</title>
   <link rel="icon" href="/static/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/static/style.css">
-  <script src="/static/vendor/supabase.js" integrity="sha384-BWcjm9OdFth9TbhCxZPdm+gAOUMAzQy9nmTs12ioXdCcbVnJaPMn+fMUoQCLt60R" defer></script><script src="/static/site.js" defer></script><script src="/static/workspace.js" defer></script>
+  <script src="/static/site.js" defer></script><script src="/static/workspace.js" defer></script>
 </head>
 <body class="workspace-page">
   <header class="site-header">
     <a class="brand" href="/"><span class="brand-mark">C</span><span>credit-sure</span></a>
-    <div class="account-bar"><span id="account-email" hidden></span><button class="text-link" id="sign-out" type="button" hidden>Sign out</button></div>
+    <a class="text-link" href="/how-it-works">How it works</a>
   </header>
   <main class="wrap workspace-main">
-    <div class="page-heading"><div><p class="eyebrow">RESEARCH WORKSPACE</p><h1>Assessment</h1></div><span class="account-private">Private to your account</span></div>
+    <div class="page-heading"><div><p class="eyebrow">RESEARCH CALCULATOR</p><h1>Assessment</h1></div><span class="account-private">No account / No saved history</span></div>
     <div class="workspace-alert" id="workspace-alert" role="status" hidden></div>
     <p class="prototype-notice"><strong>Research prototype.</strong> Use synthetic data only. Do not enter real applicant financial information or use this estimate for real lending decisions.</p>
-    <section id="policy-panel" class="prototype-notice" hidden><form id="policy-form"><label class="consent-check"><input type="checkbox" required><span>I am at least 18, agree to the <a href="/terms">Terms</a>, have read the <a href="/privacy">Privacy notice</a>, and will use synthetic research data only.</span></label><button id="policy-submit" class="button" type="submit">Accept and continue</button></form></section>
-    <div class="workspace-layout" id="workspace-content" hidden>
+
+    <div class="workspace-layout" id="workspace-content">
       <section class="application-panel">
         <form id="assessment-form">
           <div class="form-heading"><div><span class="section-kicker">01</span><div><h2>Application details</h2><p>Start with what you know. Core details are required.</p></div></div></div>
@@ -53,7 +53,7 @@
               <div class="input-wrap"><label for="savings_ratio">Savings share <span>0–1 (e.g. 0.2)</span></label><input id="savings_ratio" name="savings_ratio" type="number" min="0" max="1" step="any" placeholder="Leave blank if unknown"></div>
             </div>
           </details>
-          <label class="consent-check"><input type="checkbox" id="research-confirm" required><span>I confirm these are synthetic details. I will not use the result for a real lending decision.</span></label>
+          <label class="consent-check"><input type="checkbox" id="research-confirm" required><span>I am at least 18, have read the <a href="/privacy">Privacy notice</a>, agree to the <a href="/terms">Terms</a>, and confirm these are synthetic details for research only.</span></label>
           <button class="button" id="assess-button" type="submit">Generate research estimate <span aria-hidden="true">→</span></button>
         </form>
       </section>
@@ -71,11 +71,8 @@
         <p class="result-caution">This estimate is experimental and must not be used to make real credit or eligibility decisions.</p>
       </aside>
     </div>
-    <section class="prototype-notice" id="account-controls" hidden><h2>Account settings</h2><p>Export a copy of your saved data or permanently delete your account. Before deletion, <a href="/signin?reauth=1">sign in again</a> within five minutes.</p><button class="button" id="export-account" type="button">Export my data</button> <button class="button" id="delete-account" type="button">Delete my account</button></section>
-    <section class="history-section" id="history" hidden>
-      <div class="history-heading"><div><p class="eyebrow">YOUR ACCOUNT</p><h2>Saved assessments</h2><p>Only assessments saved by your signed-in account appear here.</p></div><label class="date-filter">Filter by date<input id="history-date" type="date"></label></div>
-      <div class="table-scroll"><table><thead><tr><th>Applicant</th><th>Date</th><th>Score</th><th>Research band</th><th></th></tr></thead><tbody id="history-rows"><tr><td colspan="5" class="empty-row">Loading your assessments…</td></tr></tbody></table></div>
-    </section>
+
+
     <footer class="workspace-footer"><span>Credit-Sure · Research prototype</span><div><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="mailto:youngseldon77@gmail.com">Contact</a></div></footer>
   </main>
 </body>
