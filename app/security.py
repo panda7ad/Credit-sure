@@ -106,10 +106,10 @@ class SecurityMiddleware:
         path = scope.get("path", "")
         headers = dict(scope.get("headers", []))
         response_started = False
-        csp = ("default-src 'self'; script-src 'self' https://challenges.cloudflare.com; "
+        csp = ("default-src 'self'; script-src 'self'; "
                "style-src 'self'; img-src 'self' data:; font-src 'self'; "
-               "connect-src 'self' https://*.supabase.co https://challenges.cloudflare.com; "
-               "frame-src https://challenges.cloudflare.com; frame-ancestors 'none'; "
+               "connect-src 'self'; "
+               "frame-src 'none'; frame-ancestors 'none'; "
                "object-src 'none'; base-uri 'none'; form-action 'self'")
 
         async def secure_send(message):

@@ -23,11 +23,10 @@ jobs:
           python -m pip install --upgrade pip==26.2.1
           python -m pip install -r requirements-dev.txt
           npm ci --ignore-scripts
-      - name: Verify source, model and policy isolation
+      - name: Verify source, model and security checks
         run: |
           python scripts/check_release.py
           python -m unittest discover -s tests -v
-          node scripts/test_database.mjs
           node --check web/site.js
           node --check web/workspace.js
       - name: Browser behavior tests for the public calculator

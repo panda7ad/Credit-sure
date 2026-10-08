@@ -1,4 +1,5 @@
 """Check deployment assets, script integrity, and accidental tracked secrets."""
+import base64
 import hashlib
 import json
 import re
@@ -17,7 +18,7 @@ for page in (ROOT / "web").glob("*.html"):
 try:
     tracked = subprocess.check_output(["git", "ls-files", "-z"], cwd=ROOT, stderr=subprocess.DEVNULL).decode().split("\0")
 except (subprocess.CalledProcessError, FileNotFoundError):
-    tracked = [str(p.relative_to(ROOT)) for folder in ("app", "web", "scripts", "supabase") for p in (ROOT/folder).rglob("*") if p.is_file()]
+    tracked = [str(p.relative_to(ROOT)) for folder in ("app", "web", "scripts") for p in (ROOT/folder).rglob("*") if p.is_file()]
 for name in tracked:
     if not name:
         continue

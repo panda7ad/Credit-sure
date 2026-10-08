@@ -2,7 +2,7 @@ import os
 import unittest
 from unittest.mock import patch
 from fastapi.testclient import TestClient
-from app import main, supabase_store
+from app import main
 
 PAYLOAD = dict(applicant_name="Synthetic", age_years=30, annual_income=600000,
                loan_amount=250000, annuity_amount=15000, research_confirmed=True)
@@ -19,8 +19,7 @@ class PublicCalculatorTests(unittest.TestCase):
         self.env.stop()
 
     def test_public_prediction_never_uses_database(self):
-        with patch.object(supabase_store, "_request", side_effect=AssertionError("No database")):
-            response = self.client.post("/api/predict", json=PAYLOAD)
+        response = self.client.post("/api/predict", json=PAYLOAD)
         self.assertEqual(response.status_code, 200)
         self.assertTrue(300 <= response.json()["credit_score"] <= 900)
         self.assertNotIn("id", response.json())
@@ -47,7 +46,7 @@ class PublicCalculatorTests(unittest.TestCase):
         self.assertNotIn("supabase", r.text)
 
     def test_readiness_requires_no_auth_provider(self):
-        with patch.dict(os.environ, APP_ENV="production", LAUNCH_SETTINGS_REVIEWED="true", RATE_LIMIT_SALT="x" * 32), patch.object(main.limiter, "ready", return_value=True), patch.object(supabase_store, "_request", side_effect=AssertionError("No database")):
+        with patch.dict(os.environ, APP_ENV="production", LAUNCH_SETTINGS_REVIEWED="true", RATE_LIMIT_SALT="x" * 32), patch.object(main.limiter, "ready", return_value=True):
             self.assertEqual(self.client.get("/api/ready").status_code, 200)
 
     def test_readiness_fails_on_missing_redis_or_launch_review(self):
