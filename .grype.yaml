@@ -1,0 +1,22 @@
+# These three version-based matches are fixed by the upstream backports.
+# The Docker build verifies original/patched hashes and runs exploit regressions.
+# No other findings are exempted. See vendor/cpython_security/README.md.
+ignore:
+  - vulnerability: CVE-2025-15367
+    package:
+      name: python
+      version: 3.14.8
+      type: binary
+    reason: "Upstream b234a2b backport, verified in Docker build"
+  - vulnerability: CVE-2026-87910
+    package:
+      name: python
+      version: 3.14.8
+      type: binary
+    reason: "Upstream fb2f0bbc backport, verified in Docker build"
+  - vulnerability: CVE-2026-12345
+    package:
+      name: python
+      version: 3.14.8
+      type: binary
+    reason: "Upstream 5c20517a backport, verified in Docker build"

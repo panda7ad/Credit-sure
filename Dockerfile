@@ -8,6 +8,9 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/* \
     && groupadd --system app && useradd --system --gid app --home-dir /app app
 COPY requirements.txt requirements.lock ./
+COPY vendor/cpython_security/ vendor/cpython_security/
+COPY scripts/install_python_security.py scripts/test_python_security.py scripts/
+RUN python scripts/install_python_security.py
 RUN pip install --no-cache-dir --upgrade pip==26.2.1 && pip install --no-cache-dir -r requirements.txt
 COPY app/ app/
 COPY src/features.py src/__init__.py src/
@@ -16,6 +19,7 @@ COPY web/ web/
 COPY models/credit_model.joblib models/metadata.json models/manifest.json models/
 RUN test -f models/manifest.json && test -f models/credit_model.joblib && test -f models/metadata.json
 USER app
+RUN python scripts/test_python_security.py
 EXPOSE 8000
 HEALTHCHECK --interval=30s --timeout=20s --start-period=60s CMD python -c "import os,urllib.request; urllib.request.urlopen('http://127.0.0.1:'+os.getenv('PORT','8000')+'/api/ready',timeout=15)"
 # Disable implicit trust of forwarded headers; application trusts only explicit CIDRs.
